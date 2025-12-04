@@ -3,6 +3,7 @@
 #include "AttributeProviderComponent.h"
 #include "Engine/DataTable.h"
 #include "MNB_AttributeSystem.h" 
+#include "DTStruct.h"
 
 const TMap<FGameplayTag, FLevelAttributeData>* UAttributeProviderComponent::GetCachedLevels() const
 {
@@ -39,4 +40,22 @@ float UAttributeProviderComponent::GetAttributeValue(const FGameplayTag& Attribu
     if (!Data) return 0.0f;
 
     return Data->GetLevelAttribute(CurrentGrade).Value;
+}
+
+
+TMap<FGameplayTag, FLevelAttributeData> UAttributeProviderComponent::GetItemEffect(const FString ItemID) const
+{
+    TMap<FGameplayTag, FLevelAttributeData> ReturnMap;
+    if (!AttributeDataTable)
+    {
+        return ReturnMap;
+    }
+    const FIconRow* Row = EffectDataTable->FindRow<FIconRow>(FName(ItemID), TEXT("AttributeProvider"));
+    if (!Row)
+    {
+        return ReturnMap;
+    }
+
+    ReturnMap = Row->Effect;
+    return ReturnMap;
 }

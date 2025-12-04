@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "GameplayTagContainer.h"
+#include "MNB_AttributeSystem.h"
 #include "DTStruct.generated.h"
 
 /**
@@ -23,7 +24,7 @@ struct FIconRow : public FTableRowBase
     FText ToolTip;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    FGameplayTag Effect;
+    TMap<FGameplayTag, FLevelAttributeData> Effect;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     UTexture2D* IconTexture;
