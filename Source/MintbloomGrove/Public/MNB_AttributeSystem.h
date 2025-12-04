@@ -49,6 +49,21 @@ struct FLevelAttributeData
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AbilityData")
 	FLevelAttribute Level5;
+
+	FLevelAttribute GetLevelAttribute(int32 Grade) const
+	{
+		switch (Grade)
+		{
+		case 1: return Level1;
+		case 2: return Level2;
+		case 3: return Level3;
+		case 4: return Level4;
+		case 5: return Level5;
+		default:
+			UE_LOG(LogTemp, Warning, TEXT("Invalid Grade %d in GetLevelAttribute. Expected 1-5."), Grade);
+			return FLevelAttribute{};
+		}
+	}
 };
 
 USTRUCT(BlueprintType)

@@ -9,6 +9,7 @@
 /**
  * 
  */
+
 UCLASS()
 class MINTBLOOMGROVE_API UMintbloomFunctionalLibrary : public UBlueprintFunctionLibrary
 {
@@ -16,6 +17,9 @@ class MINTBLOOMGROVE_API UMintbloomFunctionalLibrary : public UBlueprintFunction
 
 public:
 
-	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "World")
 	static bool GetPlayInEditor();
+
+	UFUNCTION(BlueprintPure, Category = "UI")
+	static FIconRow GetIconRow(FString IconName);
 };
